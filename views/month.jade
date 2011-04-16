@@ -7,10 +7,12 @@ ul#notifications
 #current-month= monthName(month)
 
 - if (month)
-  a#prev-month(href='/month/' + (month - 1))= monthName(month - 1)
+  - var name = monthName(month - 1)
+  a#prev-month(href='/month/' + name.toLowerCase())= name
 
 - if (month < 11)
-  a#next-month(href='/month/' + (month + 1))= monthName(month + 1)
+  - var name = monthName(month + 1)
+  a#next-month(href='/month/' + name.toLowerCase())= name
 
 form#items-form(action='/')
   table#items

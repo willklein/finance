@@ -1,4 +1,11 @@
 
+/**
+ * Module dependencies.
+ */
+
+var utils = require('../lib/helpers');
+
 exports.index = function(req, res){
-  res.redirect('/month/' + new Date().getMonth());
+  var month = utils.monthName(new Date().getMonth()).toLowerCase();
+  res.redirect('/month/' + month);
 };
