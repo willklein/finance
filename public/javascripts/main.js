@@ -5,7 +5,7 @@ var j = $;
 
 j(function(){
   var addItem = j('.edit-item').get(0).outerHTML
-    , totals = j('tr.totals').get(0).outerHTML;
+    , totals = j('tr.totals').get(0);
 
   // add item
   j('#items-form').submit(function(){
