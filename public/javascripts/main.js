@@ -4,7 +4,8 @@
 var j = $;
 
 j(function(){
-  var addItem = j('.edit-item').get(0).outerHTML;
+  var addItem = j('.edit-item').get(0).outerHTML
+    , totals = j('tr.totals').get(0).outerHTML;
 
   // add item
   j('#items-form').submit(function(){
@@ -12,8 +13,8 @@ j(function(){
     j.post('/month/' + express.month + '/items', data, function(res){
       response(res);
       if (!res.error) {
-        j('.edit-item').remove();
-        j('#items-form tbody').append(addItem);
+        j('.edit-item, tr.totals').remove();
+        j('#items-form tbody').append(addItem).append(totals);
         chart();
       }
     });
