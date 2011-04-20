@@ -15,7 +15,6 @@ j(function(){
       if (!res.error) {
         j('.edit-item, tr.totals').remove();
         j('#items-form tbody').append(addItem).append(totals);
-        chart();
       }
     });
     return false;
@@ -30,7 +29,6 @@ j(function(){
         remove(self.parents('tr'));
         j.post(url, { _method: 'DELETE' }, function(res){
           response(res);
-          chart();
         });
       }
     });
@@ -206,18 +204,6 @@ function response(res) {
     if (res.prepend) j(res.to).prepend(res.prepend);
     if (res.append) j(res.to).append(res.append);
   }
-}
-
-/**
- * Display charts.
- */
-
-function chart() {
-  $.get('/month/' + express.month + '/items', function(items){
-    var size = 150;
-    categoryChart(items, size);
-    entityChart(items, size);
-  });
 }
 
 /**
