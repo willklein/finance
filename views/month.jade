@@ -27,6 +27,11 @@ form#items-form(action='/')
     tbody
       != partial('item', { collection: items })
       != partial('item/form')
+      - if (!empty(items))
+        tr.totals
+          td
+          td.amount= total(items, 'amount')
+          td(colspan=4)
 
 #category-chart
 #entity-chart
