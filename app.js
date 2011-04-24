@@ -27,6 +27,9 @@ function normalize() {
   var month
     , ids;
 
+  // settings
+  db.settings = db.settings || {};
+
   // months
   for (var i = 0; i < 12; ++i) {
     month = db.months[i] = db.months[i] || { items: {} };
