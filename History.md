@@ -1,4 +1,11 @@
 
+0.2.0 / 2011-04-24 
+==================
+
+  * Added implemented quick and dirty credit toggle. Closes #7
+  * Added edit-in-place support. Closes #4
+  * Fixed overlay for long pages
+
 0.1.0 / 2011-04-19 
 ==================
 
