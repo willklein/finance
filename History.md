@@ -1,4 +1,10 @@
 
+0.2.1 / 2011-04-24 
+==================
+
+  * Styling; slimmer edit rows
+  * Fixed editing of tags
+
 0.2.0 / 2011-04-24 
 ==================
 
