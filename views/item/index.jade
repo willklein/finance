@@ -14,6 +14,6 @@ tr(class=item.entity ? 'edit-item' : 'add-item')
     input(type='text', name='item[date]', value=date('mm/dd/yy', item.date))
   td.action
     - if (item.entity)
-      a(href='/month/' + month + '/items/' + item.id) Remove
+      a.delete(href='/month/' + month + '/items/' + item.id) Remove
     - else
       input(type='submit', value='Add Item')

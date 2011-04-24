@@ -21,7 +21,7 @@ j(function(){
   });
 
   // remove item
-  j('#items .delete a').live('click', function(){
+  j('#items .delete').live('click', function(){
     var self = j(this);
     confirm('Delete this item?', function(ok){
       if (ok) {
