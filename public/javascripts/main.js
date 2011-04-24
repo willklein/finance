@@ -69,8 +69,7 @@ j(function(){
   j('#menu .charts a').click(function(){
     $.get('/month/' + express.month + '/items', function(items){
       var dialog = displayChart();
-      categoryChart(items, dialog.find('#category-chart').get(0), 550, 200);
-      entityChart(items, dialog.find('#entity-chart').get(0), 550, 200);
+      categoryChart(items, dialog.find('#category-chart').get(0), 750, 400);
     });
     return false;
   });
@@ -241,7 +240,7 @@ function response(res) {
  */
 
 function categoryChart(items, container, width, height) {
-  var radius = height * 0.50
+  var radius = height * 0.40
     , r = Raphael(container, width, height)
     , category = data(items, 'category');
 
@@ -250,24 +249,6 @@ function categoryChart(items, container, width, height) {
     , height / 2
     , radius
     , category.data, { legend: category.names });
-
-  hover(pie);
-}
-
-/**
- * Generate entity chart.
- */
-
-function entityChart(items, container, width, height) {
-  var radius = height * 0.50
-    , r = Raphael(container, width, height)
-    , entity = data(items, 'entity');
-
-  var pie = r.g.piechart(
-      width / 2
-    , height / 2
-    , radius
-    , entity.data, { legend: entity.names });
 
   hover(pie);
 }
