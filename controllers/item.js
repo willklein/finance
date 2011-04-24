@@ -35,6 +35,19 @@ function validate(obj, prop, type) {
 }
 
 /**
+ * Parse `tags` string, returning an array.
+ *
+ * @param {String} tags
+ * @return {Array}
+ */
+
+function parseTags(tags) {
+  return tags
+    ? tags.split(/ *, */)
+    : [];
+}
+
+/**
  * Respond with items.
  */
 
@@ -52,9 +65,8 @@ exports.create = function(req, res, next){
   var month = req.params.month
     , items = db.months[month].items
     , item = req.body.item;
-  item.tags = item.tags
-    ? item.tags.split(/ *, */)
-    : [];
+
+  item.tags = parseTags(item.tags);
 
   try {
     validate(item, 'entity');
@@ -88,6 +100,7 @@ exports.update = function(req, res, next){
     validate(data, 'date', 'date');
     validate(data, 'category');
     validate(data, 'amount', 'number');
+    item.tags = parseTags(item.tags);
     for (var key in data) item[key] = data[key];
     db.save();
     res.end();
