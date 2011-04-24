@@ -152,6 +152,8 @@ table#items
       &:last-child
         border-bottom: none
       &.totals
+        td:first-child
+          border-right: none
         td.amount
           padding-top: 6px
           padding-bottom: 6px
@@ -188,10 +190,25 @@ table#items
     input[type='text']
       width: 80%
 
+table#items
+  .toggle
+    size = 10px
+    background: lighter
+    border-radius: size
+    width: size
+    height: size
+    display: block
+    text-align: left
+    text-indent: -999999px
+    outline: none
+    &:hover
+    &.active
+      background: blue
+
 // charts
 
 .dialog .chart
-  padding 15px
+  padding: 15px
 
 // month indicators
 

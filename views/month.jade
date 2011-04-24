@@ -19,6 +19,7 @@ form#items-form(action='/')
     thead
       tr
         th
+        th
         th Amount
         th Comment
         th Category
@@ -29,6 +30,7 @@ form#items-form(action='/')
       != partial('item/form')
       - if (!empty(items))
         tr.totals
+          td
           td
           td.amount= total(items, 'amount')
           td(colspan=4)
