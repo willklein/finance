@@ -1,19 +1,22 @@
-tr(class=item.entity ? 'edit-item' : 'add-item')
+- var edit = item.entity
+tr(class=edit ? 'edit-item' : 'add-item', data-id: item.id)
+  - var name = edit ? 'item[' + item.id + ']' : 'item'
   td
+    a.toggle(class='credit' == item.type ? 'active' : '') toggle
   td.entity
-    input(type='text', name='item[entity]', placeholder='from / to', value=item.entity)
+    input(type='text', name=name + '[entity]', placeholder='from / to', value=item.entity)
   td.amount
-    input(type='text', name='item[amount]', placeholder='amount', autocomplete='off', value=item.amount)
+    input(type='text', name=name + '[amount]', placeholder='amount', autocomplete='off', value=item.amount)
   td.comment
-    input(type='text', name='item[comment]', placeholder='comment', value=item.comment)
+    input(type='text', name=name + '[comment]', placeholder='comment', value=item.comment)
   td.category
-    input(type='text', name='item[category]', placeholder='category', value=item.category)
+    input(type='text', name=name + '[category]', placeholder='category', value=item.category)
   td.tags
-    input(type='text', name='item[tags]', placeholder='tags', value=item.tags)
+    input(type='text', name=name + '[tags]', placeholder='tags', value=item.tags)
   td.date
-    input(type='text', name='item[date]', value=date('mm/dd/yy', item.date))
+    input(type='text', name=name + '[date]', value=date('mm/dd/yy', item.date))
   td.action
-    - if (item.entity)
+    - if (edit)
       a.delete(href='/month/' + month + '/items/' + item.id) Remove
     - else
       input(type='submit', value='Add Item')

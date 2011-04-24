@@ -7,6 +7,19 @@ j(function(){
   var addItem = j('.add-item').get(0).outerHTML
     , totals = j('tr.totals').get(0);
 
+  // edit item
+  j('#items .edit-item input').change(function(){
+    var self = j(this)
+      , tr = self.parents('tr')
+      , id = tr.data('id')
+      , data = tr.find('input').serialize() + '&_method=put';
+
+    j.post('/month/' + express.month + '/items/' + id, data, function(res){
+      response(res);
+      self.toggleClass('error', res.error);
+    });
+  });
+
   // add item
   j('#items-form').submit(function(){
     var data = j(this).serialize();

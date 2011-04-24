@@ -55,6 +55,7 @@ exports.create = function(req, res, next){
   item.tags = item.tags
     ? item.tags.split(/ *, */)
     : [];
+
   try {
     validate(item, 'entity');
     validate(item, 'date', 'date');
@@ -67,6 +68,29 @@ exports.create = function(req, res, next){
       if (err) return next(err);
       res.send({ append: html, to: '#items' });
     });
+  } catch (err) {
+    res.send({ error: err.message });
+  }
+};
+
+/**
+ * Update an item.
+ */
+
+exports.update = function(req, res, next){
+  var month = req.params.month
+    , id = req.params.item
+    , data = req.body.item[id]
+    , item = db.months[month].items[id];
+
+  try {
+    validate(data, 'entity');
+    validate(data, 'date', 'date');
+    validate(data, 'category');
+    validate(data, 'amount', 'number');
+    for (var key in data) item[key] = data[key];
+    db.save();
+    res.end();
   } catch (err) {
     res.send({ error: err.message });
   }
