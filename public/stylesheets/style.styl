@@ -43,6 +43,9 @@ a
   &:hover
     text-decoration: underline
 
+.hide
+  display: none
+
 // forms
 
 input[type='text']
@@ -201,6 +204,7 @@ table#items
 table#items
   .toggle
     size = 10px
+    cursor: pointer
     background: lighter
     border-radius: size
     width: size
@@ -210,8 +214,13 @@ table#items
     text-indent: -999999px
     outline: none
     &:hover
+      background: blue
     &.active
       background: blue
+      &:hover
+        background: blue + 40%
+    &:active
+      background: blue - 40%
 
 // charts
 

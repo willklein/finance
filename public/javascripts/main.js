@@ -7,6 +7,23 @@ j(function(){
   var addItem = j('.add-item').get(0).outerHTML
     , totals = j('tr.totals').get(0);
 
+  // toggle credit
+  j('#items .toggle').click(function(){
+    var el = j(this)
+      , input = el.next('input');
+
+    if ('credit' == input.val()) {
+      input.val('debit');
+      el.removeClass('active');
+    } else {
+      input.val('credit');
+      el.addClass('active');
+    }
+
+    input.change();
+    return false;
+  });
+
   // edit item
   j('#items .edit-item input').change(function(){
     var self = j(this)
