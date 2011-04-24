@@ -33,7 +33,7 @@ button()
 // general
 
 body
-  padding: 5px 40px
+  padding: 5px 40px 40px 40px
   font: 14px 'helvetica neue', helvetica, arial, sans-serif
   smooth()
 
@@ -152,6 +152,8 @@ table#items
       &:last-child
         border-bottom: none
       &.totals
+        td:first-child
+          border-right: none
         td.amount
           padding-top: 6px
           padding-bottom: 6px
@@ -177,21 +179,44 @@ table#items
           width: 100px
           input
             width: 80px
-        &.delete
+        &.action
           width: 70px
           a
             button()
 
 table#items
-  tr.edit-item td
+  tr.add-item td
     text-align: right
     input[type='text']
       width: 80%
+  tr.edit-item
+    input[type='text']
+      border-color: white
+      padding-top: 4px
+      padding-bottom: 4px
+  tr:hover
+    input[type='text']
+      border-color: lighter
+
+table#items
+  .toggle
+    size = 10px
+    background: lighter
+    border-radius: size
+    width: size
+    height: size
+    display: block
+    text-align: left
+    text-indent: -999999px
+    outline: none
+    &:hover
+    &.active
+      background: blue
 
 // charts
 
 .dialog .chart
-  padding 15px
+  padding: 15px
 
 // month indicators
 

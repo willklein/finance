@@ -1,8 +1,22 @@
-tr
-  td.entity= item.entity
-  td.amount= item.amount
-  td.comment= item.comment
-  td.category= item.category
-  td.tags= item.tags.join(', ')
-  td.date= date('mm/dd/yy', item.date)
-  td.delete: a(href='/month/' + month + '/items/' + item.id) Remove
+- var edit = item.entity
+tr(class=edit ? 'edit-item' : 'add-item', data-id: item.id)
+  - var name = edit ? 'item[' + item.id + ']' : 'item'
+  td
+    a.toggle(class='credit' == item.type ? 'active' : '') toggle
+  td.entity
+    input(type='text', name=name + '[entity]', placeholder='from / to', value=item.entity)
+  td.amount
+    input(type='text', name=name + '[amount]', placeholder='amount', autocomplete='off', value=item.amount)
+  td.comment
+    input(type='text', name=name + '[comment]', placeholder='comment', value=item.comment)
+  td.category
+    input(type='text', name=name + '[category]', placeholder='category', value=item.category)
+  td.tags
+    input(type='text', name=name + '[tags]', placeholder='tags', value=item.tags)
+  td.date
+    input(type='text', name=name + '[date]', value=date('mm/dd/yy', item.date))
+  td.action
+    - if (edit)
+      a.delete(href='/month/' + month + '/items/' + item.id) Remove
+    - else
+      input(type='submit', value='Add Item')

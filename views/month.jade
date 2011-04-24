@@ -19,6 +19,7 @@ form#items-form(action='/')
     thead
       tr
         th
+        th
         th Amount
         th Comment
         th Category
@@ -26,9 +27,10 @@ form#items-form(action='/')
         th Date
     tbody
       != partial('item', { collection: items })
-      != partial('item/form')
+      != partial('item', { object: {}})
       - if (!empty(items))
         tr.totals
+          td
           td
           td.amount= total(items, 'amount')
           td(colspan=4)

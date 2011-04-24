@@ -4,8 +4,21 @@
 var j = $;
 
 j(function(){
-  var addItem = j('.edit-item').get(0).outerHTML
+  var addItem = j('.add-item').get(0).outerHTML
     , totals = j('tr.totals').get(0);
+
+  // edit item
+  j('#items .edit-item input').change(function(){
+    var self = j(this)
+      , tr = self.parents('tr')
+      , id = tr.data('id')
+      , data = tr.find('input').serialize() + '&_method=put';
+
+    j.post('/month/' + express.month + '/items/' + id, data, function(res){
+      response(res);
+      self.toggleClass('error', res.error);
+    });
+  });
 
   // add item
   j('#items-form').submit(function(){
@@ -13,7 +26,7 @@ j(function(){
     j.post('/month/' + express.month + '/items', data, function(res){
       response(res);
       if (!res.error) {
-        j('.edit-item, tr.totals').remove();
+        j('.add-item, tr.totals').remove();
         j('#items-form tbody').append(addItem).append(totals);
       }
     });
@@ -21,7 +34,7 @@ j(function(){
   });
 
   // remove item
-  j('#items .delete a').live('click', function(){
+  j('#items .delete').live('click', function(){
     var self = j(this);
     confirm('Delete this item?', function(ok){
       if (ok) {
@@ -69,8 +82,8 @@ j(function(){
       .addClass(direction);
 
     items.sort(function(a, b){
-      var a = parseInt(j(a.cells[i]).text(), 10)
-        , b = parseInt(j(b.cells[i]).text(), 10);
+      var a = parseInt(j(a.cells[i]).find('input').val(), 10)
+        , b = parseInt(j(b.cells[i]).find('input').val(), 10);
       return 'asc' == direction
         ? a - b
         : b - a;
