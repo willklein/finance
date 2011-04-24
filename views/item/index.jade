@@ -13,7 +13,7 @@ tr(class=edit ? 'edit-item' : 'add-item', data-id: item.id)
   td.category
     input(type='text', name=name + '[category]', placeholder='category', value=item.category)
   td.tags
-    input(type='text', name=name + '[tags]', placeholder='tags', value=item.tags.join(', '))
+    input(type='text', name=name + '[tags]', placeholder='tags', value=item.tags ? item.tags.join(', ') : '')
   td.date
     input(type='text', name=name + '[date]', value=date('mm/dd/yy', item.date))
   td.action

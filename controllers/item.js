@@ -100,8 +100,8 @@ exports.update = function(req, res, next){
     validate(data, 'date', 'date');
     validate(data, 'category');
     validate(data, 'amount', 'number');
-    item.tags = parseTags(item.tags);
     for (var key in data) item[key] = data[key];
+    item.tags = parseTags(item.tags);
     db.save();
     res.end();
   } catch (err) {
