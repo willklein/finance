@@ -62,6 +62,7 @@ app.configure('development', function(){
 
 app.configure('tj', function(){
   app.set('title', "TJ's Financial Management");
+  app.enable('cache views');
   db = new Database('/Users/tj/dropbox/documents/finances-tj.db');
   db.load(normalize);
   app.use(express.errorHandler({ dumpExceptions: true }));
