@@ -69,8 +69,8 @@ j(function(){
       .addClass(direction);
 
     items.sort(function(a, b){
-      var a = parseInt(j(a.cells[i]).text(), 10)
-        , b = parseInt(j(b.cells[i]).text(), 10);
+      var a = parseInt(j(a.cells[i]).find('input').val(), 10)
+        , b = parseInt(j(b.cells[i]).find('input').val(), 10);
       return 'asc' == direction
         ? a - b
         : b - a;
