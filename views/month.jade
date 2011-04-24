@@ -27,7 +27,7 @@ form#items-form(action='/')
         th Date
     tbody
       != partial('item', { collection: items })
-      != partial('item/form')
+      != partial('item', { object: {}})
       - if (!empty(items))
         tr.totals
           td
