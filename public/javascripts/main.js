@@ -65,6 +65,12 @@ j(function(){
     return false;
   });
 
+  // display config
+  j('#menu .config a').click(function(){
+    displayConfig();
+    return false;
+  });
+
   // display charts
   j('#menu .charts a').click(function(){
     $.get('/month/' + express.month + '/items', function(items){
@@ -127,6 +133,40 @@ function notify(type, msg, duration) {
   var el = j('<li class="' + type + '">' + msg + '</li>');
   j('#notifications').append(el);
   setTimeout(function(){ remove(el); }, duration);
+}
+
+/**
+ * Display `config`.
+ */
+
+function displayConfig(){
+  var overlay = j('#overlay')
+    , dialog = j(j('#config').html());
+
+  dialog
+    .appendTo('body')
+    .find('.contents').append(config);
+
+  overlay
+    .removeClass('hide')
+    .click(function(){
+      overlay.addClass('hide');
+      dialog.remove();
+    });
+
+  dialog.css({
+      top: (window.innerHeight / 2) - dialog.height() / 2
+    , left: (window.innerWidth / 2) - dialog.width() / 2
+  });
+
+  j(window).resize(function(){
+    dialog.css({
+        top: (window.innerHeight / 2) - dialog.height() / 2
+      , left: (window.innerWidth / 2) - dialog.width() / 2
+    });
+  });
+
+  return dialog;
 }
 
 /**

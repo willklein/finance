@@ -28,7 +28,7 @@ function normalize() {
     , ids;
 
   // settings
-  db.settings = db.settings || {};
+  db.config = db.config || {};
 
   // months
   for (var i = 0; i < 12; ++i) {
@@ -40,6 +40,8 @@ function normalize() {
       item.date = new Date(item.date);
     });
   }
+
+  app.locals({ config: db.config });
 }
 
 // configuration
@@ -59,7 +61,6 @@ app.configure(function(){
 
 app.configure('development', function(){
   db = new Database('/tmp/finance.db');
-  db.load(normalize);
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
@@ -67,13 +68,17 @@ app.configure('tj', function(){
   app.set('title', "TJ's Financial Management");
   app.enable('cache views');
   db = new Database('/Users/tj/dropbox/documents/finances-tj.db');
-  db.load(normalize);
   app.use(express.errorHandler({ dumpExceptions: true }));
+});
+
+app.configure(function(){
+  db.load(normalize);
 });
 
 // routing
 
 app.get('/', main.index);
+app.put('/config', main.updateConfig);
 var month = app.resource('month', require('./controllers/month'));
 var items = app.resource('items', require('./controllers/item'));
 month.add(items);
