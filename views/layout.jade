@@ -23,4 +23,14 @@ html
       .chart#category-chart
       .chart#entity-chart
 
+  script#config(type='text/template')
+    div#config.dialog
+      form(action='/config', method='post')
+        input(type='hidden', name='_method', value='put')
+        p
+          label(for='bracket') Tax Bracket:
+          input(type='text', name='bracket', placeholder='%', value=config.bracket)
+        p.buttons
+          input(type='submit', value='Save')
+
   div#overlay.hide
