@@ -74,8 +74,9 @@ j(function(){
   // display charts
   j('#menu .charts a').click(function(){
     $.get('/month/' + express.month + '/items', function(items){
-      var dialog = displayChart();
-      categoryChart(items, dialog.find('#category-chart').get(0), 750, 400);
+      var dialog = new Dialog(j('#chart').html());
+      categoryChart(items, dialog.el.find('.chart').get(0), 750, 400);
+      dialog.show();
     });
     return false;
   });
@@ -166,44 +167,6 @@ function confirm(msg, fn) {
     .find('.cancel').click(reply(false));
 
   dialog.show();
-}
-
-/**
- * Display `chart`.
- *
- * @param {jQuery} chart
- */
-
-function displayChart(chart){
-  var dialog = j(j('#chart').html())
-    , overlay = j('#overlay');
-
-  dialog
-    .appendTo('body')
-    .find('.contents').append(chart);
-
-  overlay
-    .removeClass('hide')
-    .click(function(){
-      overlay.addClass('hide');
-      dialog.remove();
-    });
-
-  setTimeout(function(){
-    dialog.css({
-        top: (window.innerHeight / 2) - dialog.height() / 2
-      , left: (window.innerWidth / 2) - dialog.width() / 2
-    });
-
-    j(window).resize(function(){
-      dialog.css({
-          top: (window.innerHeight / 2) - dialog.height() / 2
-        , left: (window.innerWidth / 2) - dialog.width() / 2
-      });
-    });
-  }, 0);
-
-  return dialog;
 }
 
 /**
