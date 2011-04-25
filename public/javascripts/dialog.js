@@ -2,12 +2,13 @@
 /**
  * Initialize a `Dialog` with the given `html`.
  *
- * @param {String} html
+ * @param {String} html or id
  * @api public
  */
 
 function Dialog(html) {
   var self = this;
+  if ('#' == html[0]) html = j(html).html();
   this.overlay = j('#overlay');
   this.el = j('<div class="dialog">' + html + '</div>');
   j(window).resize(function(){ self.resize(); });

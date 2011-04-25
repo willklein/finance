@@ -67,14 +67,14 @@ j(function(){
 
   // display config
   j('#menu .config a').click(function(){
-    displayConfig();
+    new Dialog('#config').show();
     return false;
   });
 
   // display charts
   j('#menu .charts a').click(function(){
     $.get('/month/' + express.month + '/items', function(items){
-      var dialog = new Dialog(j('#chart').html());
+      var dialog = new Dialog('#chart');
       categoryChart(items, dialog.el.find('.chart').get(0), 750, 400);
       dialog.show();
     });
@@ -137,14 +137,6 @@ function notify(type, msg, duration) {
 }
 
 /**
- * Display `config`.
- */
-
-function displayConfig(){
-  new Dialog(j('#config').html()).show();
-}
-
-/**
  * Display confirmation `msg`.
  *
  * @param {String} msg
@@ -152,7 +144,7 @@ function displayConfig(){
  */
 
 function confirm(msg, fn) {
-  var dialog = new Dialog(j('#confirm').html());
+  var dialog = new Dialog('#confirm');
 
   function reply(val) {
     return function(){
