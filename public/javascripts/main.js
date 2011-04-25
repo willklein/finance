@@ -177,36 +177,21 @@ function displayConfig(){
  */
 
 function confirm(msg, fn) {
-  var dialog = j(j('#confirm').html())
-    , overlay = j('#overlay');
+  var dialog = new Dialog(j('#confirm').html());
 
   function reply(val) {
     return function(){
-      overlay.addClass('hide');
-      dialog.remove();
+      dialog.hide();
       fn(val);
     }
   }
 
-  dialog
-    .appendTo('body')
+  dialog.el
     .find('.message').text(msg).end()
     .find('.ok').click(reply(true)).focus().end()
     .find('.cancel').click(reply(false));
 
-  dialog.css({
-      top: (window.innerHeight / 2) - dialog.height() / 2
-    , left: (window.innerWidth / 2) - dialog.width() / 2
-  });
-  
-  j(window).resize(function(){
-    dialog.css({
-        top: (window.innerHeight / 2) - dialog.height() / 2
-      , left: (window.innerWidth / 2) - dialog.width() / 2
-    });
-  });
-
-  overlay.removeClass('hide');
+  dialog.show();
 }
 
 /**

@@ -6,31 +6,29 @@ html
     script(src='/javascripts/raphael.js')
     script(src='/javascripts/g.raphael.js')
     script(src='/javascripts/g.pie.js')
+    script(src='/javascripts/dialog.js')
     script(src='/javascripts/main.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script!= javascript
   body!= body
 
   script#confirm(type='text/template')
-    div#confirmation.dialog
-      .message Message
-      .actions
-        button.ok OK
-        button.cancel Cancel
+    .message Message
+    .actions
+      button.ok OK
+      button.cancel Cancel
 
   script#chart(type='text/template')
-    div#chart.dialog
-      .chart#category-chart
-      .chart#entity-chart
+    .chart#category-chart
+    .chart#entity-chart
 
   script#config(type='text/template')
-    div#config.dialog
-      form(action='/config', method='post')
-        input(type='hidden', name='_method', value='put')
-        p
-          label(for='bracket') Tax Bracket:
-          input(type='text', name='bracket', placeholder='%', value=config.bracket)
-        p.buttons
-          input(type='submit', value='Save')
+    form(action='/config', method='post')
+      input(type='hidden', name='_method', value='put')
+      p
+        label(for='bracket') Tax Bracket:
+        input(type='text', name='bracket', placeholder='%', value=config.bracket)
+      p.buttons
+        input(type='submit', value='Save')
 
   div#overlay.hide
