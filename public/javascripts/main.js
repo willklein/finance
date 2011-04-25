@@ -53,7 +53,7 @@ j(function(){
   // remove item
   j('#items .delete').live('click', function(){
     var self = j(this);
-    confirm('Delete this item?', function(ok){
+    Dialog.confirm('Delete this item?', function(ok){
       if (ok) {
         var url = self.attr('href');
         remove(self.parents('tr'));
@@ -67,15 +67,16 @@ j(function(){
 
   // display config
   j('#menu .config a').click(function(){
-    displayConfig();
+    new Dialog('#config').show();
     return false;
   });
 
   // display charts
   j('#menu .charts a').click(function(){
     $.get('/month/' + express.month + '/items', function(items){
-      var dialog = displayChart();
-      categoryChart(items, dialog.find('#category-chart').get(0), 750, 400);
+      var dialog = new Dialog('#chart');
+      categoryChart(items, dialog.el.find('.chart').get(0), 750, 400);
+      dialog.show();
     });
     return false;
   });
@@ -133,118 +134,6 @@ function notify(type, msg, duration) {
   var el = j('<li class="' + type + '">' + msg + '</li>');
   j('#notifications').append(el);
   setTimeout(function(){ remove(el); }, duration);
-}
-
-/**
- * Display `config`.
- */
-
-function displayConfig(){
-  var overlay = j('#overlay')
-    , dialog = j(j('#config').html());
-
-  dialog
-    .appendTo('body')
-    .find('.contents').append(config);
-
-  overlay
-    .removeClass('hide')
-    .click(function(){
-      overlay.addClass('hide');
-      dialog.remove();
-    });
-
-  dialog.css({
-      top: (window.innerHeight / 2) - dialog.height() / 2
-    , left: (window.innerWidth / 2) - dialog.width() / 2
-  });
-
-  j(window).resize(function(){
-    dialog.css({
-        top: (window.innerHeight / 2) - dialog.height() / 2
-      , left: (window.innerWidth / 2) - dialog.width() / 2
-    });
-  });
-
-  return dialog;
-}
-
-/**
- * Display confirmation `msg`.
- *
- * @param {String} msg
- * @param {Function} fn
- */
-
-function confirm(msg, fn) {
-  var dialog = j(j('#confirm').html())
-    , overlay = j('#overlay');
-
-  function reply(val) {
-    return function(){
-      overlay.addClass('hide');
-      dialog.remove();
-      fn(val);
-    }
-  }
-
-  dialog
-    .appendTo('body')
-    .find('.message').text(msg).end()
-    .find('.ok').click(reply(true)).focus().end()
-    .find('.cancel').click(reply(false));
-
-  dialog.css({
-      top: (window.innerHeight / 2) - dialog.height() / 2
-    , left: (window.innerWidth / 2) - dialog.width() / 2
-  });
-  
-  j(window).resize(function(){
-    dialog.css({
-        top: (window.innerHeight / 2) - dialog.height() / 2
-      , left: (window.innerWidth / 2) - dialog.width() / 2
-    });
-  });
-
-  overlay.removeClass('hide');
-}
-
-/**
- * Display `chart`.
- *
- * @param {jQuery} chart
- */
-
-function displayChart(chart){
-  var dialog = j(j('#chart').html())
-    , overlay = j('#overlay');
-
-  dialog
-    .appendTo('body')
-    .find('.contents').append(chart);
-
-  overlay
-    .removeClass('hide')
-    .click(function(){
-      overlay.addClass('hide');
-      dialog.remove();
-    });
-
-  setTimeout(function(){
-    dialog.css({
-        top: (window.innerHeight / 2) - dialog.height() / 2
-      , left: (window.innerWidth / 2) - dialog.width() / 2
-    });
-
-    j(window).resize(function(){
-      dialog.css({
-          top: (window.innerHeight / 2) - dialog.height() / 2
-        , left: (window.innerWidth / 2) - dialog.width() / 2
-      });
-    });
-  }, 0);
-
-  return dialog;
 }
 
 /**
