@@ -53,7 +53,7 @@ j(function(){
   // remove item
   j('#items .delete').live('click', function(){
     var self = j(this);
-    confirm('Delete this item?', function(ok){
+    Dialog.confirm('Delete this item?', function(ok){
       if (ok) {
         var url = self.attr('href');
         remove(self.parents('tr'));
@@ -134,31 +134,6 @@ function notify(type, msg, duration) {
   var el = j('<li class="' + type + '">' + msg + '</li>');
   j('#notifications').append(el);
   setTimeout(function(){ remove(el); }, duration);
-}
-
-/**
- * Display confirmation `msg`.
- *
- * @param {String} msg
- * @param {Function} fn
- */
-
-function confirm(msg, fn) {
-  var dialog = new Dialog('#confirm');
-
-  function reply(val) {
-    return function(){
-      dialog.hide();
-      fn(val);
-    }
-  }
-
-  dialog.el
-    .find('.message').text(msg).end()
-    .find('.ok').click(reply(true)).focus().end()
-    .find('.cancel').click(reply(false));
-
-  dialog.show();
 }
 
 /**

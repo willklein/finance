@@ -61,3 +61,28 @@ Dialog.prototype.resize = function(){
   return this;
 };
 
+/**
+ * Display confirmation `msg`.
+ *
+ * @param {String} msg
+ * @param {Function} fn
+ */
+
+Dialog.confirm = function(msg, fn) {
+  var dialog = new Dialog('#confirm');
+
+  function reply(val) {
+    return function(){
+      dialog.hide();
+      fn(val);
+    }
+  }
+
+  dialog.el
+    .find('.message').text(msg).end()
+    .find('.ok').click(reply(true)).focus().end()
+    .find('.cancel').click(reply(false));
+
+  dialog.show();
+};
+
