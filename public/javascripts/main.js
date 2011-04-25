@@ -140,33 +140,7 @@ function notify(type, msg, duration) {
  */
 
 function displayConfig(){
-  var overlay = j('#overlay')
-    , dialog = j(j('#config').html());
-
-  dialog
-    .appendTo('body')
-    .find('.contents').append(config);
-
-  overlay
-    .removeClass('hide')
-    .click(function(){
-      overlay.addClass('hide');
-      dialog.remove();
-    });
-
-  dialog.css({
-      top: (window.innerHeight / 2) - dialog.height() / 2
-    , left: (window.innerWidth / 2) - dialog.width() / 2
-  });
-
-  j(window).resize(function(){
-    dialog.css({
-        top: (window.innerHeight / 2) - dialog.height() / 2
-      , left: (window.innerWidth / 2) - dialog.width() / 2
-    });
-  });
-
-  return dialog;
+  new Dialog(j('#config').html()).show();
 }
 
 /**
