@@ -10,25 +10,26 @@ function Dialog(html) {
   var self = this;
   this.overlay = j('#overlay');
   this.el = j('<div class="dialog">' + html + '</div>');
-  j(window).resize(function(){
-    self.resize();
-  });
+  j(window).resize(function(){ self.resize(); });
 }
 
 /**
  * Hide the dialog.
  *
+ * @return {Dialog} for chaining
  * @api public
  */
 
 Dialog.prototype.hide = function(){
   this.el.remove();
   this.overlay.addClass('hide');
+  return this;
 };
 
 /**
  * Show the dialog.
  *
+ * @return {Dialog} for chaining
  * @api public
  */
 
@@ -37,11 +38,13 @@ Dialog.prototype.show = function(){
   el.appendTo('body');
   this.overlay.removeClass('hide');
   this.resize();
+  return this;
 };
 
 /**
  * Resize the dialog.
  *
+ * @return {Dialog} for chaining
  * @api public
  */
 
@@ -52,5 +55,7 @@ Dialog.prototype.resize = function(){
       top: (window.innerHeight / 2) - el.height() / 2
     , left: (window.innerWidth / 2) - el.width() / 2
   });
+
+  return this;
 };
 
