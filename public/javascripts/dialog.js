@@ -11,6 +11,7 @@ function Dialog(html) {
   if ('#' == html[0]) html = j(html).html();
   this.overlay = j('#overlay');
   this.el = j('<div class="dialog">' + html + '</div>');
+  this.overlay.click(function(){ self.hide(); });
   j(window).resize(function(){ self.resize(); });
 }
 
