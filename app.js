@@ -38,6 +38,7 @@ function normalize() {
     ids.forEach(function(id){
       var item = month.items[id];
       item.date = new Date(item.date);
+      item.type = item.type || 'debit';
     });
   }
 

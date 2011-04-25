@@ -168,9 +168,6 @@ table#items
       &.totals
         td:first-child
           border-right: none
-        td.amount
-          padding-top: 10px
-          padding-bottom: 10px
       td
         border-right: 1px solid #eee
         padding 4px 15px
@@ -230,6 +227,29 @@ table#items
         background: blue + 40%
     &:active
       background: blue - 40%
+
+table#items .totals .amount
+  text-align: left
+  ul
+    list-style: none
+    margin: 5px 0
+    padding: 0
+    li
+      display: inline-block
+      margin: 0 10px
+      padding: 4px 0
+      font-size: 12px
+      strong
+        font-weight: normal
+        padding-right: 5px
+        text-transform: lowercase
+        color: blue
+        &::after
+          content: ':'
+      em
+        font-style: normal
+        &::before
+          content: '$'
 
 // charts
 

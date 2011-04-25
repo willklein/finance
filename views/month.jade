@@ -33,5 +33,21 @@ form#items-form(action='/')
         tr.totals
           td
           td
-          td.amount= total(items, 'amount')
-          td(colspan=4)
+          td.amount(colspan=5)
+            - var credit, debit
+            ul
+              li 
+                strong Debit
+                em= debit = total(items, 'debit')
+              li
+                strong Gross
+                em= credit = total(items, 'credit')
+              - if (config.bracket)
+                - var gross = total(items, 'credit') 
+                - var taxes = gross * (config.bracket / 100)
+                li
+                  strong Net
+                  em= credit = gross - taxes
+              li
+                strong Savings
+                em= credit - debit
