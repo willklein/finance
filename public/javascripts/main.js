@@ -127,9 +127,6 @@ j(function(){
       case 39 : // Right
         window.location = j("#next-month").attr("href");
         break;
-      case 191: // ?
-        new Dialog("&larr; Previous month<br/> &rarr; Next month").show();
-        break;
      }
   });
 });
