@@ -118,6 +118,17 @@ j(function(){
       tbody.append(row);
     });
   });
+  
+  j(document).keyup(function(e){
+    switch (e.keyCode) {
+      case 37 : // Left
+        window.location = j("#prev-month").attr("href");
+        break;
+      case 39 : // Right
+        window.location = j("#next-month").attr("href");
+        break;
+     }
+  });
 });
 
 /**
@@ -229,3 +240,4 @@ function data(items, prop) {
 
   return obj;
 }
+
