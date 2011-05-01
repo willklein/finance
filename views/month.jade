@@ -38,16 +38,16 @@ form#items-form(action='/')
             ul
               li 
                 strong Debit
-                em= debit = total(items, 'debit')
+                em= money(debit = total(items, 'debit'))
               li
                 strong Gross
-                em= credit = total(items, 'credit')
+                em= money(credit = total(items, 'credit'))
               - if (config.bracket)
                 - var gross = total(items, 'credit') 
                 - var taxes = gross * (config.bracket / 100)
                 li
                   strong Net
-                  em= credit = gross - taxes
+                  em= money(credit = gross - taxes)
               li
                 strong Savings
-                em= credit - debit
+                em= money(credit - debit)
