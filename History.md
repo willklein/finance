@@ -1,4 +1,16 @@
 
+0.3.0 / 2011-05-01 
+==================
+
+  * Added `Dialog`
+  * Added; display debit, credit, net and gross totals. Closes #9
+  * Added app config
+  * Added exposing app settings to client-side
+  * Added credit toggle button
+  * Fixed money precision
+  * Removed entity chart
+  * Changed; ctrl+arrow to navigate
+
 0.2.1 / 2011-04-24 
 ==================
 
