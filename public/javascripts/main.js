@@ -120,6 +120,7 @@ j(function(){
   });
   
   j(document).keyup(function(e){
+    if (!e.ctrlKey) return;
     switch (e.keyCode) {
       case 37 : // Left
         window.location = j("#prev-month").attr("href");
