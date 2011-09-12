@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -51,7 +50,7 @@ app.configure(function(){
   app.set('title', 'Financial Management');
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.use(express.logger('  \033[90m:method\033[0m \033[36m:url\033[0m \033[90m:response-timems\033[0m'));
+  app.use(express.logger('  \033[90m:method\033[0m \033[36m:url\033[0m \033[90m:response-time\033[0m'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(stylus.middleware({ src: __dirname + '/public', compile: compile }));
