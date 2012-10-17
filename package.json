@@ -5,11 +5,11 @@
   "private": true,
   "dependencies": {
       "express": "2.x"
-    , "express-resource": ">= 0.0.1"
-    , "express-expose": ">= 0.0.1"
+    , "express-resource": "0.2.4"
+    , "express-expose": "0.2.2"
     , "jade": "0.9.x"
     , "github-flavored-markdown": "1.0.0"
-    , "stylus": "0.11.x"
+    , "stylus": "0.30.x"
     , "nib": "0.0.x"
   },
   "engines": { "node": ">= 0.4.4" }
